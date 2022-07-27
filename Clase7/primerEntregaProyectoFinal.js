@@ -100,7 +100,7 @@ if (turnosTrabajados >turnosTrabajables){
 //Pido al vendedor que ingrese cuantas ventas hizo en total
 ventasTotal = parseInt(prompt(`Ingresa la cantidad total de ventas concretadas en tus ${turnosTrabajados} turnos:`))
 while (isNaN(ventasTotal) || ventasTotal < 1) {
-    ventasTotal = parseInt(prompt(`Ingresa solo numeros enteros positivos o decimales! Ingresa la cantidad total de ventas concretadas en tus ${turnosTrabajados} turnos:`))
+    ventasTotal = parseInt(prompt(`Ingresa solo numeros enteros positivos! Ingresa la cantidad total de ventas concretadas en tus ${turnosTrabajados} turnos:`))
 }
 
 
@@ -109,24 +109,33 @@ for (i = 1; i <= ventasTotal; i++) {
 }
 
 // Se formula el mensaje del detalle de ventas por si se requiere
-let mensaje= "";
+let mensajeDetalleVentas= "";
 for (const venta of ventasTotalArray){
     detalleVenta(venta);}
 function detalleVenta (objeto){
-    mensaje += (`\n Turno: ${objeto.turno}, Producto: ${objeto.producto},  Cuota: ${objeto.cuota}`);
+    mensajeDetalleVentas += (`\n Turno: ${objeto.turno}, Producto: ${objeto.producto},  Cuota: ${objeto.cuota}`);
 }
 
+// Se formula el mensaje del detalle de ventas por turno
+let mensajeDetalleTurno = "";
+function filtroTurno (turno){
+    const filtro = ventasTotalArray.filter( p => p.turno == turno )
+    for (const p of filtro){
+        mensajeDetalleTurno += (`\n Turno: ${p.turno}, Producto: ${p.producto},  Cuota: ${p.cuota}`)
+    }
+
+}
 
 //Menu interactivo para editar variables
 salir = "";
-while (salir != "3"){
-    opcionDetalle = parseInt(prompt("Para continuar ingrese una opcion: \n 1 - Ver detalle de ventas cargadas \n 2 - Ver pago final \n 3 - Salir "));
-    while (isNaN(opcionDetalle) || opcionDetalle <= 0 || opcionDetalle > 3) {
-        opcionDetalle = parseInt(prompt("Ingresa un numero valido (1 para ver detalle por turno, 2 para ver pago final o 3 para salir): "))
+while (salir != "4"){
+    opcionDetalle = parseInt(prompt("Para continuar ingrese una opcion: \n 1 - Ver detalle de ventas cargadas \n 2 - Ver pago final \n 3 - Ver detalle de ventas de un turno \n 4 - Salir "));
+    while (isNaN(opcionDetalle) || opcionDetalle <= 0 || opcionDetalle > 4) {
+        opcionDetalle = parseInt(prompt("Ingresa un numero valido (1 para ver detalle por turno, 2 para ver pago final , 3 para ver detalle de ventas de un turno o 4 para salir): "))
     }
 
     if (opcionDetalle == "1") {
-        let mensaje1 = (`Tus ventas cargados son ${ventasTotalArray.length}: ${mensaje}`);
+        let mensaje1 = (`Tus ventas cargados son ${ventasTotalArray.length}: ${mensajeDetalleVentas}`);
         alert(mensaje1);
     }
 
@@ -137,8 +146,19 @@ while (salir != "3"){
         alert ("Tus paga final se abonara de la siguiente forma.\n1- Pago por turnos trabajados => " + valorTurno + " * " + turnosTrabajados + " : " + pagoTurnos + " pesos. \n" + "2- Pago por ventas realizadas (si lograste mas de 10 ventas, el potenciador de comision se aplicara automaticamente al resultado) => " + valorVenta + " * "  + ventasTotal + " : " + comisionAdvance + " pesos. \n" + "Paga final => " + pagoFinal + " pesos.");
     }
 
+    else if (opcionDetalle == "3") {
+        let turnoEleccion = parseInt(prompt("Que turno desea desplegar?: "));
+        while (isNaN(turnoEleccion) || turnoEleccion <= 0 || turnoEleccion > turnosTrabajados) {
+            turnoEleccion = parseInt(prompt(`Ingresa un numero valido, el de uno de tus turnos trabajados`));
+        }
+        filtroTurno(turnoEleccion);
+        let mensaje1 = (`Las ventas realizadas en el turno ${turnoEleccion} son: ${mensajeDetalleTurno}`);
+        alert(mensaje1);
+        mensajeDetalleTurno = "";
+    }
+
     else  {
         alert("Gracias por utilizar el calculador de comisiones!");
-        break;
+        salir = "4";
     }
 }

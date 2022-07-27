@@ -114,15 +114,21 @@ function detalleVenta (objeto){
 }
 
 
-const arrayPrueba = [];
+let mensajeDetalleTurno = "",
 function filtroTurno (turno){
     const filtro = ventasTotalArray.filter( p => p.turno == turno )
-    arrayPrueba.push ({turno: filtro.turno});
-    for (const p of arrayPrueba){
-        console.log(arrayPrueba);
+    //arrayPrueba.push ({turno: filtro.turno});
+    //console.log(filtro[1]);
+    //console.log(`El turno es ${filtro[turno].turno}`)
+    for (const p of filtro){
+        mensajeDetalleTurno += (`\n Turno: ${objeto.turno}, Producto: ${objeto.producto},  Cuota: ${objeto.cuota}`)
+        console.log(`venta realizada: ${filtro[turno].turno}`);
     }
+
 }
+
 filtroTurno(1);
+console.log(arrayPrueba);
 
 //Menu interactivo para editar variables
 salir = "";
