@@ -1,0 +1,80 @@
+//  Calculador de comisiones
+
+class Venta {
+    constructor (dias, ventas) {
+        this.dias = dias;
+        this.ventas = ventas;
+    }
+}
+
+const ventas = [];
+let nombre = "";
+
+//boton de captura de datos
+const botonCaptura = document.getElementById("botonCaptura");
+botonCaptura.addEventListener("click", () => {capturarVentas ()}  )
+
+//funcion inicial  ACA TUVE PROBLEMAS!!! la idea es traer los datos guardados en el storage por si el usuario actualiza la pagina no se pierdan, pero cuando lo iniciamos por primera vez me da un error en consola por no tener definida una variable del storage, al actualizar una vez con el boton ya se cargan datos en storage y si actualizamos funciona bien pero me da undefined, ambos errores no supe afrontarlos
+
+function pintarInfoInicial () {
+    
+    const divImpresion = document.getElementById("bodyDiv2");
+    const impresionInfo = document.createElement("ul");
+    const ventasJSON = localStorage.getItem('ventas');
+    const ventasStorage = JSON.parse(ventasJSON);
+    const nombreStorage = localStorage.getItem('nombre');
+    divImpresion.innerHTML = ""
+    impresionInfo.innerHTML = `
+    <h2> ${ nombreStorage } tus resultados son: </h2>
+    <li> Dias trabajados: ${ventasStorage.dias} </li>
+    <li> Ventas concretadas: ${ventasStorage.ventas} </li>
+    `
+    divImpresion.append(impresionInfo);
+    
+}
+
+pintarInfoInicial ()
+
+//sincronizo la info capturada en el storage
+function sincronizarStorage () {
+    localStorage.setItem('ventas', JSON.stringify(ventas) )
+    localStorage.setItem('nombre', nombre)
+}
+
+function leerStorage () {
+    const ventasJSON = localStorage.getItem('ventas');
+    const ventasStorage = JSON.parse(ventasJSON);
+    console.log(ventasStorage);
+}
+
+//capturo la info para plasmarla y a la vez guardarla en storage
+function capturarVentas () {
+    const diasTrabajados = document.getElementById("diasTrabajados").value;
+    const ventasConcretadas = document.getElementById("ventasConcretadas").value;
+    const nombreCapturado = document.getElementById("nombre").value;
+    nombre = nombreCapturado;
+    ventas.length = 0;
+    let venta = new Venta (diasTrabajados, ventasConcretadas);
+    ventas.push(venta);
+    sincronizarStorage ();
+    pintarInfo ();
+    
+}
+
+
+//pinto la info al darle click en actualizar
+function pintarInfo () {
+    const divImpresion = document.getElementById("bodyDiv2");
+    const impresionInfo = document.createElement("ul");
+    const [venta] = ventas;
+    const nombreStorage = localStorage.getItem('nombre');
+    //const nombreStorage1 = JSON.parse(nombreStorage);  
+    divImpresion.innerHTML = ""
+    impresionInfo.innerHTML = `
+    <h2> ${ nombre } tus resultados son: </h2>
+    <li> Dias trabajados: ${venta.dias} </li>
+    <li> Ventas concretadas: ${venta.ventas} </li>
+    `
+    divImpresion.append(impresionInfo);
+}
+
