@@ -21,16 +21,21 @@ function pintarInfoInicial () {
     const divImpresion = document.getElementById("bodyDiv2");
     const impresionInfo = document.createElement("ul");
     const ventasJSON = localStorage.getItem('ventas');
-    const ventasStorage = JSON.parse(ventasJSON);
-    const nombreStorage = localStorage.getItem('nombre');
+    const ventasStorage = JSON.parse(ventasJSON) || [];
+    const nombreStorage = localStorage.getItem('nombre') || null;
     divImpresion.innerHTML = ""
-    impresionInfo.innerHTML = `
-    <h2> ${ nombreStorage } tus resultados son: </h2>
-    <li> Dias trabajados: ${ventasStorage.dias} </li>
-    <li> Ventas concretadas: ${ventasStorage.ventas} </li>
-    `
-    divImpresion.append(impresionInfo);
-    
+    if (nombreStorage) {
+        impresionInfo.innerHTML = `
+        <h2> ${ nombreStorage } tus resultados son: </h2>
+        <li> Dias trabajados: ${ventasStorage[0].dias} </li>
+        <li> Ventas concretadas: ${ventasStorage[0].ventas} </li>
+        `;   
+        divImpresion.append(impresionInfo);
+    }
+    else {
+        impresionInfo.innerHTML = "<h3> No hay info previa cargada </h3>"
+        divImpresion.append(impresionInfo);
+    }
 }
 
 pintarInfoInicial ()
