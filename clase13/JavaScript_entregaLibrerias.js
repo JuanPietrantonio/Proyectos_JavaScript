@@ -74,7 +74,6 @@ function pintarInfo () {
     const impresionInfo = document.createElement("ul");
     const [venta] = ventas;
     const nombreStorage = localStorage.getItem('nombre');
-    //const nombreStorage1 = JSON.parse(nombreStorage);  
     divImpresion.innerHTML = ""
     impresionInfo.innerHTML = `
     <h2> ${ nombre } tus resultados son: </h2>
