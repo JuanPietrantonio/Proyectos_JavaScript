@@ -79,4 +79,3 @@ function pintarInfo () {
     `
     divImpresion.append(impresionInfo);
 }
-
