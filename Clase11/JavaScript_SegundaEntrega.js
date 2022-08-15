@@ -14,7 +14,7 @@ let nombre = "";
 const botonCaptura = document.getElementById("botonCaptura");
 botonCaptura.addEventListener("click", () => {capturarVentas ()}  )
 
-//funcion inicial  ACA TUVE PROBLEMAS!!! la idea es traer los datos guardados en el storage por si el usuario actualiza la pagina no se pierdan, pero cuando lo iniciamos por primera vez me da un error en consola por no tener definida una variable del storage, al actualizar una vez con el boton ya se cargan datos en storage y si actualizamos funciona bien pero me da undefined, ambos errores no supe afrontarlos
+//funcion inicial  trae los datos que hay en storage, si no hay datos, muestra mensaje para cargar datos
 
 function pintarInfoInicial () {
     
