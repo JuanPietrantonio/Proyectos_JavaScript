@@ -60,6 +60,10 @@ function capturarVentas () {
     ventas.push(venta);
     sincronizarStorage ();
     pintarInfo ();
+    Toastify({
+        text: "Datos actualizados",
+        duration: 2000
+    }).showToast();
     
 }
 
