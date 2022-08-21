@@ -82,3 +82,23 @@ function pintarInfo () {
     `
     divImpresion.append(impresionInfo);
 }
+
+
+
+function imprimirObjetivo (data) {
+    const divImpresion = document.getElementById("bodyDiv");
+    const impresionInfo = document.createElement("ul");
+    impresionInfo.innerHTML = `
+    <h3> Objetivo de ventas: ${data[0].diasRestantes} </h3>
+    <h3> Dias de vigencia restantes: ${data[1].objetivo} </h3>
+    `
+    divImpresion.append(impresionInfo);
+}
+
+
+fetch ('/data/data.json')
+    .then (res => res.json())
+    .then (data => {
+        console.log(data)
+        imprimirObjetivo (data)
+})
