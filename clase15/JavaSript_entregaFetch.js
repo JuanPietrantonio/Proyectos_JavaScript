@@ -96,7 +96,7 @@ function imprimirObjetivo (data) {
 }
 
 
-fetch ('/data/data.json')
+fetch ('./data/data.json')
     .then (res => res.json())
     .then (data => {
         console.log(data)

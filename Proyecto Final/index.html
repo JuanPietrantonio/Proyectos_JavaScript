@@ -1,0 +1,48 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Calculador de comisiones y objetivos</title>
+</head>
+<body>
+    <div class="container-0">    
+        <div class="container-1">
+            <div class="container-1-data">
+                <li class="lista">
+                    <h3>Datos requeridos</h3>
+                    <ul>Nombre y apellido: <input type="text" id="nombre" class="datos"></ul>
+                    <ul>Ventas Sin Promo: <input type="number" id="sinPromo" class="datos"></ul>
+                    <ul>Ventas Con Promo: <input type="number" id="conPromo" class="datos"></ul>
+                    <ul>Dias Restantes: <input type="number" id="diasRestantes" class="datos"></ul>
+                    <ul>Objetivo personal: <input type="number" id="objetivoPersonal" class="datos"></ul>   
+                </li>
+                <button id="cargar">Cargar datos</button>
+                <button id="BorrarTodo">Borrar todo</button>
+            </div>
+            <div class="container-1-info">
+                <h3>Escala comisional</h3>
+            </div>
+        </div>
+        <div class="container-2">
+            <div class="container-2-nombre" ID="container-2-nombre">
+                <p>Nombre y apellido</p>
+            </div>
+            <div class="container-2-info" ID="container-2-info">
+                <p>promedio de ventas</p>
+            </div>
+            <div class="container-2-objetivo">
+                <div class="container-2-objetivo-detalle">
+
+                </div>
+                <div class="container-2-objetivo-detalle">
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+<script src="javascript.js"></script>
+</body>
+</html>
