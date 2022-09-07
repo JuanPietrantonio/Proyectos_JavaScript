@@ -44,6 +44,7 @@ function cargarDatos () {
     imprimirNombre();
     imprimirInfo ();
     imprimirObjetivo1();
+    imprimirObjetivo2();
 }
 
 function borrarDatos () {
@@ -85,11 +86,66 @@ function imprimirInfo () {
     console.log(promedio);
 }
 
+
+
+/*function definirEscala () {
+    //funcion logica para definir rango de escalas del vendedor
+    const datosStorage = JSON.parse(localStorage.getItem('datos'));
+    const objetivoStorage = JSON.parse(localStorage.getItem('objetivo'));
+    ventasTotal = parseInt(datos[1]) + parseInt(datos[2])
+
+    if (ventasTotal < objetivoStorage[0].escala) {proxEscala = parseInt(objetivoStorage[1].escala)}
+    else if (ventasTotal >= objetivoStorage[0].escala && ventasTotal < objetivoStorage[1].escala ) {proxEscala = parseInt(objetivoStorage[1].escala)}
+    else if (ventasTotal >= objetivoStorage[1].escala && ventasTotal < objetivoStorage[2].escala ) {proxEscala = parseInt(objetivoStorage[2].escala)}
+    else if (ventasTotal >= objetivoStorage[2].escala && ventasTotal < objetivoStorage[3].escala ) {proxEscala = parseInt(objetivoStorage[3].escala)}
+    else {proxEscala = parseInt(datos[4])}
+    
+}*/
+
 function imprimirObjetivo1 () {
     const datosStorage = JSON.parse(localStorage.getItem('datos'));
     const objetivoStorage = JSON.parse(localStorage.getItem('objetivo'))
-    let ventasFaltantesProxEscala = parseInt(objetivoStorage[0].escala) - (parseInt(datosStorage[1]) +  parseInt(datosStorage[2]));
-    console.log(ventasFaltantesProxEscala);
-    /*let ventasPorDiaProxEscala = 
-    let posibleComision = */
+    ventasTotal = parseInt(datos[1]) + parseInt(datos[2])
+    //probar como me funciona esto
+    let proxEscala = (ventasTotal < objetivoStorage[0].escala) ? parseInt(objetivoStorage[0].escala) : (ventasTotal >= objetivoStorage[0].escala && ventasTotal < objetivoStorage[1].escala ) ? parseInt(objetivoStorage[1].escala) : (ventasTotal >= objetivoStorage[1].escala && ventasTotal < objetivoStorage[2].escala) ? parseInt(objetivoStorage[2].escala) : (ventasTotal >= objetivoStorage[2].escala && ventasTotal < objetivoStorage[3].escala) ? parseInt(objetivoStorage[3].escala) : parseInt(datos[4]);
+    //probar como me funciona esto
+    let proxComision = (ventasTotal < objetivoStorage[0].escala) ? parseInt(objetivoStorage[0].comision) : (ventasTotal >= objetivoStorage[0].escala && ventasTotal < objetivoStorage[1].escala ) ? parseInt(objetivoStorage[1].comision) : (ventasTotal >= objetivoStorage[1].escala && ventasTotal < objetivoStorage[2].escala) ? parseInt(objetivoStorage[2].comision) : (ventasTotal >= objetivoStorage[2].escala && ventasTotal < objetivoStorage[3].escala) ? parseInt(objetivoStorage[3].comision) : parseInt(datos[4]);
+
+    //definirEscala ();
+    let ventasFaltantesProxEscala = proxEscala - (parseInt(datosStorage[1]) +  parseInt(datosStorage[2]));
+    let ventasPorDiaProxEscala = parseFloat(ventasFaltantesProxEscala / parseInt(datosStorage[3]))
+    
+    const divContainterObjetivo1 = document.getElementById('container-2-objetivo-detalle1');
+    const impresionObjetivo1 = document.createElement('ul');
+    divContainterObjetivo1.innerHTML = "";
+    impresionObjetivo1.innerHTML = `
+    <li>Ventas para proxima escala: ${ventasFaltantesProxEscala}</li>
+    <li>Ventas diarias para proxima escala: ${ventasPorDiaProxEscala}</li>
+    <li>Comision: ${proxComision}</li>
+    `
+    divContainterObjetivo1.append(impresionObjetivo1);
 }
+
+function imprimirObjetivo2 () {
+    const datosStorage = JSON.parse(localStorage.getItem('datos'));
+    const objetivoStorage = JSON.parse(localStorage.getItem('objetivo'))
+    let ventasFaltantesProxEscala = parseInt(datos[4]) - (parseInt(datosStorage[1]) +  parseInt(datosStorage[2]));
+    let ventasPorDiaProxEscala = parseInt(ventasFaltantesProxEscala / datosStorage[3])
+    //aca la logica de la comision segun obj
+    let posibleComision = parseInt(objetivoStorage[0].comision)
+
+    const divContainterObjetivo2 = document.getElementById('container-2-objetivo-detalle2');
+    const impresionObjetivo2 = document.createElement('ul');
+    divContainterObjetivo2.innerHTML = "";
+    impresionObjetivo2.innerHTML = `
+    <li>Ventas para proxima escala: ${ventasFaltantesProxEscala}</li>
+    <li>Ventas diarias para proxima escala: ${ventasPorDiaProxEscala}</li>
+    <li>Comision: ${posibleComision}</li>
+    `
+    divContainterObjetivo2.append(impresionObjetivo2);
+}
+
+
+//HACER PRUEBAS DE LOGICA CUANDO VENDO MAS DE 34 VENTAS Y LO MISMO CON OBJETIVO PERSONAL, FUNCION FLECHA PARA CALCULAR LA COMISION 
+
+//VER SI SE PUEDE AGREGAR UN "VALOR VENTA" IGUAL QUE LOS IF ELSE DE LAS ESCALAS, AGREGAR AL DATA.JSON EL VALOR POR VENTA SEGUN CADA ESCALA Y LISTO YA TENEMOS LO NECESARIO PARA CALCULAR LA PLATA EXACTA QUE SE PUEDEN LLEVAR CON SU ESCALA MAS LAS VENTAS INDIVIDUALES
