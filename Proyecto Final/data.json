@@ -1,7 +1,7 @@
 [
     {"diasVigencia": 24},
-    {"escala":22, "comision": 22000,"valorVenta": 400},
-    {"escala":26, "comision": 26000,"valorVenta": 500},
-    {"escala":30, "comision": 30000,"valorVenta": 600},
-    {"escala":34, "comision": 40000,"valorVenta": 700}
+    {"escala":22, "comision": 26076,"valorVenta": 400},
+    {"escala":26, "comision": 38000,"valorVenta": 400},
+    {"escala":30, "comision": 50000,"valorVenta": 400},
+    {"escala":34, "comision": 62000,"valorVenta": 400}
 ]
