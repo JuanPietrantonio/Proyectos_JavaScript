@@ -13,13 +13,13 @@ botonBorrarDatos.addEventListener ("click", () => {borrarDatos ()}  )
 activarFetch();
 
 function activarFetch () {
-    fetch ('./data.json')
+    fetch ('./ProyectoFinal/data.json')
         .then (res => res.json())
         .then (data => {
         diasVigenciaFetch(data);
         objetivoFetch(data);
     })
-    fetch ('./vendedor.json')
+    fetch ('./ProyectoFinal/vendedor.json')
         .then (res => res.json())
         .then (vend => {
         listaVendedores(vend);
@@ -233,12 +233,3 @@ function imprimirObjetivo2 () {
     `
     divContainterObjetivo2.append(impresionObjetivo2);
 }
-
-
-/////limitar decimales en distribucion de % y en Ventas diarias para asegurar escala con 20% en objetivo1
-
-
-
-//decimales en info general: distribucion de ventas, promedio 
-//en  obj1: diarias para prox escala en ambos
-//en obj2: mismo que obj1 para asegurar obj

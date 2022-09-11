@@ -1,31 +1,53 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/ProyectoFinal/style.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-    <title>Curso de JavaScript comision 40770</title>
+    <title>Calculador de comisiones y objetivos</title>
 </head>
-<body id="bodyId">
-    <h1>Calculador de comisiones</h1>
-    <div id="bodyDiv"> 
-        <h3>Ingresa tu nombre</h3>
-        <input type="text" id="nombre" placeholder="Nombre" >
-        <h3>Ingresa los dias trabajados</h3>
-        <input type="text" id="diasTrabajados" placeholder="Dias trabajados">
-        <h3>Ingresa las ventas concretadas</h3>
-        <input type="text" id="ventasConcretadas" placeholder="Ventas concretadas">
-        <button id="botonCaptura">Actualizar</button>
+<body>
+    <div class="container-0">    
+        <div class="container-1 border">
+            <div class="container-1-data border">
+                <li class="lista">
+                    <h2>Datos requeridos</h2>
+                    <ul>Vendedor: <select name="vendedor" id="vendedor"></select></ul>  
+                    <ul>Ventas Sin Promo: <input type="number" id="sinPromo" class="datos"></ul>
+                    <ul>Ventas Con Promo: <input type="number" id="conPromo" class="datos"></ul>
+                    <ul>Dias Restantes: <input type="number" id="diasRestantes" class="datos"></ul>
+                    <ul>Objetivo personal: <input type="number" id="objetivoPersonal" class="datos"></ul>   
+                </li>
+                <button id="cargar">Cargar datos</button>
+                <button id="BorrarTodo">Borrar todo</button>
+                
+            </div>
+            <div class="container-1-info border">
+                
+            </div>
+        </div>
+        <div class="container-2">
+            <div class="container-2-nombre border" ID="container-2-nombre">
+                
+            </div>
+            <div class="container-2-info border" ID="container-2-info">
+                
+            </div>
+            <div class="container-2-objetivo">
+                <div class="container-2-objetivo-detalle border" ID="container-2-objetivo-detalle1">
+
+                </div>
+                <div class="container-2-objetivo-detalle border" ID="container-2-objetivo-detalle2">
+
+                </div>
+            </div>
+
+        </div>
     </div>
-    <div id="bodyDiv2">
-
-
-    </div>
-
-
-<script src="clase15/JavaSript_entregaFetch.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="/ProyectoFinal/javascript.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
 </body>
 </html>
